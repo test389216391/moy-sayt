@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Таза Үй — уборка квартир в Костанае</title>
+<style>
+  :root{
+    --main:#0e7c66; --main-dark:#095c4c; --accent:#f4b63f;
+    --ink:#1d2a2a; --muted:#5d6b6b; --bg:#f6faf8; --card:#ffffff; --line:#dfe9e5;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; font-family:"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink);
+    background:var(--bg); line-height:1.55; font-size:17px}
+  a{color:inherit}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 20px}
+
+  /* Меню */
+  header.top{position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid var(--line)}
+  .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .logo{font-weight:800; font-size:21px; color:var(--main-dark); text-decoration:none}
+  .logo span{color:var(--accent)}
+  .menu{display:flex; gap:22px}
+  .menu a{text-decoration:none; color:var(--muted); font-weight:600}
+  .menu a:hover{color:var(--main)}
+  .burger{display:none; background:none; border:0; font-size:28px; cursor:pointer}
+
+  /* Главный экран */
+  .hero{background:linear-gradient(rgba(10,30,26,.62),rgba(10,30,26,.62)),url("uborka.jpg") center/cover no-repeat; color:#fff; padding:72px 0 80px}
+  .hero h1{font-size:44px; line-height:1.15; margin:0 0 16px; max-width:17ch}
+  .hero p{font-size:20px; margin:0 0 30px; max-width:46ch; opacity:.92}
+  .btn{display:inline-block; background:var(--accent); color:#222; font-weight:700;
+    padding:15px 28px; border-radius:12px; text-decoration:none; border:0; cursor:pointer; font-size:17px}
+  .btn:hover{filter:brightness(1.05)}
+  .btn.ghost{background:transparent; color:#fff; border:2px solid rgba(255,255,255,.7); margin-left:10px}
+  .hero-facts{display:flex; gap:28px; margin-top:38px; flex-wrap:wrap}
+  .hero-facts b{display:block; font-size:26px}
+
+  section{padding:64px 0}
+  h2{font-size:32px; margin:0 0 10px}
+  .lead{color:var(--muted); margin:0 0 30px}
+
+  /* Услуги */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px}
+  .card .ico{font-size:34px}
+  .card h3{margin:10px 0 6px}
+  .card .price{font-weight:800; color:var(--main-dark); font-size:19px; margin-top:10px}
+
+  .wa{background:#25d366; color:#fff}
+
+  /* О нас и отзывы */
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center}
+  .why{list-style:none; padding:0; margin:0}
+  .why li{padding:12px 0 12px 34px; position:relative; border-bottom:1px solid var(--line)}
+  .why li::before{content:"✓"; position:absolute; left:4px; color:var(--main); font-weight:800}
+  .photo{border-radius:18px; min-height:280px; background:linear-gradient(160deg,#cfe8df,#9fd1c1);
+    display:flex; align-items:center; justify-content:center; font-size:90px}
+  .reviews{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .review{background:var(--card); border-radius:16px; padding:22px; border:1px solid var(--line)}
+  .review .who{font-weight:700; margin-top:10px}
+  .stars{color:var(--accent)}
+
+  /* Контакты */
+  .contacts{background:#fff}
+  .contact-grid{display:grid; grid-template-columns:1fr 1.2fr; gap:28px}
+  .contact-list p{margin:0 0 12px}
+  .map{border:0; width:100%; height:300px; border-radius:16px}
+  footer{background:var(--main-dark); color:#d9ece6; padding:26px 0; font-size:15px}
+
+  /* Телефон */
+  @media (max-width:760px){
+    body{font-size:16px}
+    .menu{display:none; position:absolute; top:64px; left:0; right:0; background:#fff;
+      flex-direction:column; gap:0; border-bottom:1px solid var(--line)}
+    .menu a{padding:14px 20px; border-top:1px solid var(--line)}
+    .menu.open{display:flex}
+    .burger{display:block}
+    .hero{padding:48px 0 56px}
+    .hero h1{font-size:32px}
+    .btn.ghost{margin:12px 0 0}
+    .cards,.reviews,.two,.contact-grid{grid-template-columns:1fr}
+    section{padding:44px 0}
+    h2{font-size:26px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top">Таза <span>Үй</span></a>
+    <button class="burger" id="burger" aria-label="Меню">☰</button>
+    <nav class="menu" id="menu">
+      <a href="#uslugi">Услуги</a>
+      <a href="#o-nas">О нас</a>
+      <a href="#otzyvy">Отзывы</a>
+      <a href="#kontakty">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <h1>Уборка квартир в Костанае за один день</h1>
+    <p>Приезжаем со своими средствами и техникой. Стоимость видна заранее.</p>
+    <a class="btn" href="#uslugi">Смотреть услуги</a>
+    <div class="hero-facts">
+      <div><b>600+</b>квартир убрано</div>
+      <div><b>4,9 ★</b>в 2ГИС</div>
+      <div><b>с 8:00 до 21:00</b>без выходных</div>
+    </div>
+  </div>
+</div>
+
+<section id="uslugi">
+  <div class="wrap">
+    <h2>Услуги</h2>
+    <p class="lead">Цены за квартиру до 50 м². Точную сумму назовём по телефону.</p>
+    <div class="cards">
+      <div class="card"><div class="ico">🧽</div><h3>Поддерживающая уборка</h3>
+        <p>Пыль, полы, кухня, санузел. Раз в неделю — и дома всегда чисто.</p>
+        <div class="price">от 15 000 ₸</div></div>
+      <div class="card"><div class="ico">✨</div><h3>Генеральная уборка</h3>
+        <p>Отмываем всё: шкафы внутри, плитку, двери, батареи.</p>
+        <div class="price">от 30 000 ₸</div></div>
+      <div class="card"><div class="ico">🏗️</div><h3>После ремонта</h3>
+        <p>Убираем строительную пыль, следы краски и затирки.</p>
+        <div class="price">от 45 000 ₸</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="o-nas">
+  <div class="wrap two">
+    <div>
+      <h2>О нас</h2>
+      <p class="lead">Таза Үй работает в Костанае с 2021 года. В команде 8 человек, каждый прошёл обучение и проверку.</p>
+      <ul class="why">
+        <li>Свои средства и техника — вам ничего не нужно покупать</li>
+        <li>Цена фиксируется до начала работы</li>
+        <li>Если что-то не понравилось — переделаем бесплатно</li>
+        <li>Оплата после уборки: наличными или Kaspi</li>
+      </ul>
+    </div>
+    <div class="photo">🏠</div>
+  </div>
+</section>
+
+<section id="otzyvy">
+  <div class="wrap">
+    <h2>Отзывы</h2>
+    <p class="lead">Что пишут клиенты</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div>Заказывала генеральную перед Наурызом. Отмыли даже то, что я не просила.<div class="who">Айгерим, 5 мкр</div></div>
+      <div class="review"><div class="stars">★★★★★</div>После ремонта думал, что пыль останется навсегда. Приехали вдвоём, за день всё убрали.<div class="who">Ерлан, КЖБИ</div></div>
+      <div class="review"><div class="stars">★★★★☆</div>Удобно, что цену видно сразу на сайте. Беру поддерживающую раз в неделю.<div class="who">Ольга, Центр</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contacts" id="kontakty">
+  <div class="wrap contact-grid">
+    <div class="contact-list">
+      <h2>Контакты</h2>
+      <p>📍 Костанай, ул. Аль-Фараби, 110</p>
+      <p>📞 +7 700 000 00 00</p>
+      <p>🕗 Каждый день с 8:00 до 21:00</p>
+      <p><a class="btn wa" href="https://wa.me/77000000000" target="_blank">Написать в WhatsApp</a></p>
+    </div>
+    <iframe class="map" loading="lazy" title="Карта"
+      src="https://maps.google.com/maps?q=%D0%9A%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B9%2C%20%D0%90%D0%BB%D1%8C-%D0%A4%D0%B0%D1%80%D0%B0%D0%B1%D0%B8%20110&z=15&output=embed"></iframe>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© Таза Үй, Костанай. Учебный сайт курса Vibe Coding Start.</div>
+</footer>
+
+<script>
+  // Меню на телефоне
+  const menu = document.getElementById("menu");
+  document.getElementById("burger").addEventListener("click", () => menu.classList.toggle("open"));
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => menu.classList.remove("open")));
+</script>
+</body>
+</html>
