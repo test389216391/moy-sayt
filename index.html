@@ -280,7 +280,7 @@
     tg.dataset.text = text;
   }
 
-  [type, area, windows].forEach(el => el.addEventListener("input", calculate));
+  [type, windows].forEach(el => el.addEventListener("input", calculate));
   extras.forEach(el => el.addEventListener("change", calculate));
   calculate();
 
