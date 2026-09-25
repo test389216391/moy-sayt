@@ -48,7 +48,21 @@
   .card h3{margin:10px 0 6px}
   .card .price{font-weight:800; color:var(--main-dark); font-size:19px; margin-top:10px}
 
+  /* Калькулятор */
+  .calc{background:var(--card); border:2px solid var(--main); border-radius:20px; padding:30px;
+    display:grid; grid-template-columns:1.2fr 1fr; gap:30px}
+  .field{margin-bottom:18px}
+  .field label{display:block; font-weight:700; margin-bottom:7px}
+  .field select,.field input[type=number]{width:100%; font-size:17px; padding:12px; border:1px solid var(--line); border-radius:10px}
+  .checks label{display:flex; gap:10px; align-items:center; font-weight:500; margin-bottom:8px}
+  .checks input{width:20px; height:20px}
+  .total{background:var(--bg); border-radius:16px; padding:24px; display:flex; flex-direction:column; justify-content:center}
+  .total .sum{font-size:42px; font-weight:800; color:var(--main-dark); margin:4px 0 6px}
+  .total small{color:var(--muted)}
+  .send{display:flex; flex-direction:column; gap:10px; margin-top:20px}
   .wa{background:#25d366; color:#fff}
+  .tg{background:#2aabee; color:#fff}
+  .note{font-size:14px; color:var(--muted); min-height:20px}
 
   /* О нас и отзывы */
   .two{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center}
@@ -80,7 +94,8 @@
     .hero{padding:48px 0 56px}
     .hero h1{font-size:32px}
     .btn.ghost{margin:12px 0 0}
-    .cards,.reviews,.two,.contact-grid{grid-template-columns:1fr}
+    .cards,.reviews,.two,.contact-grid,.calc{grid-template-columns:1fr}
+    .calc{padding:20px}
     section{padding:44px 0}
     h2{font-size:26px}
   }
@@ -94,6 +109,7 @@
     <button class="burger" id="burger" aria-label="Меню">☰</button>
     <nav class="menu" id="menu">
       <a href="#uslugi">Услуги</a>
+      <a href="#calc">Калькулятор</a>
       <a href="#o-nas">О нас</a>
       <a href="#otzyvy">Отзывы</a>
       <a href="#kontakty">Контакты</a>
@@ -104,8 +120,9 @@
 <div class="hero" id="top">
   <div class="wrap">
     <h1>Уборка квартир в Костанае за один день</h1>
-    <p>Приезжаем со своими средствами и техникой. Стоимость видна заранее.</p>
-    <a class="btn" href="#uslugi">Смотреть услуги</a>
+    <p>Приезжаем со своими средствами и техникой. Стоимость видна заранее — посчитайте за минуту.</p>
+    <a class="btn" href="#calc">Рассчитать стоимость</a>
+    <a class="btn ghost" href="#uslugi">Смотреть услуги</a>
     <div class="hero-facts">
       <div><b>600+</b>квартир убрано</div>
       <div><b>4,9 ★</b>в 2ГИС</div>
@@ -117,7 +134,7 @@
 <section id="uslugi">
   <div class="wrap">
     <h2>Услуги</h2>
-    <p class="lead">Цены за квартиру до 50 м². Точную сумму назовём по телефону.</p>
+    <p class="lead">Цены за квартиру до 50 м². Точная сумма — в калькуляторе ниже.</p>
     <div class="cards">
       <div class="card"><div class="ico">🧽</div><h3>Поддерживающая уборка</h3>
         <p>Пыль, полы, кухня, санузел. Раз в неделю — и дома всегда чисто.</p>
@@ -128,6 +145,49 @@
       <div class="card"><div class="ico">🏗️</div><h3>После ремонта</h3>
         <p>Убираем строительную пыль, следы краски и затирки.</p>
         <div class="price">от 45 000 ₸</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="calc">
+  <div class="wrap">
+    <h2>Калькулятор стоимости</h2>
+    <p class="lead">Выберите параметры — сумма посчитается сразу.</p>
+    <div class="calc">
+      <div>
+        <div class="field">
+          <label for="type">Вид уборки</label>
+          <select id="type">
+            <option value="300">Поддерживающая — 300 ₸ за м²</option>
+            <option value="600" selected>Генеральная — 600 ₸ за м²</option>
+            <option value="900">После ремонта — 900 ₸ за м²</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="area">Площадь квартиры, м²</label>
+          <input type="number" id="area" value="50" min="10" max="300">
+        </div>
+        <div class="field checks">
+          <label style="font-weight:700">Дополнительно</label>
+          <label><input type="checkbox" class="extra" value="1500" data-name="окна"> Мытьё окон — 1 500 ₸ за окно</label>
+          <label><input type="checkbox" class="extra" value="4000" data-name="холодильник"> Холодильник внутри — 4 000 ₸</label>
+          <label><input type="checkbox" class="extra" value="5000" data-name="балкон"> Балкон — 5 000 ₸</label>
+        </div>
+        <div class="field">
+          <label for="windows">Сколько окон мыть</label>
+          <input type="number" id="windows" value="3" min="1" max="20">
+        </div>
+      </div>
+      <div class="total">
+        <small>Примерная стоимость</small>
+        <div class="sum" id="sum">30 000 ₸</div>
+        <small id="details">Генеральная уборка, 50 м²</small>
+        <div class="send">
+          <a class="btn wa" id="wa" target="_blank">Отправить расчёт в WhatsApp</a>
+          <a class="btn tg" id="tg" href="https://t.me/taza_uy_demo" target="_blank">Написать в Telegram</a>
+          <div class="note" id="note"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -179,6 +239,59 @@
 </footer>
 
 <script>
+  // Номер владельца для WhatsApp: международный формат без плюса
+  const WHATSAPP = "77000000000";
+
+  const type = document.getElementById("type");
+  const area = document.getElementById("area");
+  const windows = document.getElementById("windows");
+  const extras = document.querySelectorAll(".extra");
+  const sumEl = document.getElementById("sum");
+  const detailsEl = document.getElementById("details");
+  const wa = document.getElementById("wa");
+  const tg = document.getElementById("tg");
+  const note = document.getElementById("note");
+
+  const money = n => n.toLocaleString("ru-RU") + " ₸";
+
+  function calculate() {
+    const m2 = Math.max(0, Number(area.value) || 0);
+    let total = Number(type.value) * m2;
+    const chosen = [];
+    extras.forEach(box => {
+      if (!box.checked) return;
+      if (box.dataset.name === "окна") {
+        const n = Math.max(1, Number(windows.value) || 1);
+        total += Number(box.value) * n;
+        chosen.push("окна (" + n + " шт.)");
+      } else {
+        total += Number(box.value);
+        chosen.push(box.dataset.name);
+      }
+    });
+    const kind = type.options[type.selectedIndex].text.split(" — ")[0];
+    const details = kind + " уборка, " + m2 + " м²" + (chosen.length ? ", " + chosen.join(", ") : "");
+
+    sumEl.textContent = money(total);
+    detailsEl.textContent = details;
+
+    const text = "Здравствуйте! Хочу заказать уборку.\n" + details + "\nСумма по калькулятору: " + money(total);
+    wa.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(text);
+    tg.dataset.text = text;
+  }
+
+  [type, area, windows].forEach(el => el.addEventListener("input", calculate));
+  extras.forEach(el => el.addEventListener("change", calculate));
+  calculate();
+
+  // В Telegram нельзя передать готовый текст в чат — копируем его в буфер
+  tg.addEventListener("click", () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(tg.dataset.text);
+      note.textContent = "Расчёт скопирован — вставьте его в чат.";
+    }
+  });
+
   // Меню на телефоне
   const menu = document.getElementById("menu");
   document.getElementById("burger").addEventListener("click", () => menu.classList.toggle("open"));
